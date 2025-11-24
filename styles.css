@@ -28,18 +28,14 @@ h3 {
 	background: linear-gradient(to right, #ff0000, #FFFF00);
 }
 
-.btn {
+.btn,
+.reset,
+.copy {
 	font: 600 1em 'Raleway', sans-serif;
 	border-radius: 8px;
 	padding: .5em;
-	width: 40vw;
+	width: 20vw;
 	text-align: center;
 }
 
-.reset {
-	font: 600 1em 'Raleway', sans-serif;
-	border-radius: 8px;
-	padding: .5em;
-	width: 40%vw;
-	text-align: center;
-}
+
