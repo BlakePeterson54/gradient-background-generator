@@ -4,6 +4,7 @@ const [c1, c2] = document.querySelectorAll('.color');
 const gradientEl = document.getElementById('gradient');
 const btn = document.querySelector('.btn');
 const resetBtn = document.querySelector('.reset');
+const copyBtn = document.querySelector('.copy');
 
 // builder for the gradient
 const gradientStr = (a, b) => `linear-gradient(to right, ${a}, ${b})`;
@@ -33,6 +34,20 @@ const onRandomClick = () => {
 	applyGradient();
 }
 
+const onCopyClick = async () => {
+	const cssText = outputEl.textContent.trim();
+	if (!cssText) return;
+
+	try {
+		await navigator.clipboard.writeText(cssText);
+		const original = copyBtn.textContent;
+		copyBtn.textContent = 'Copied!';
+		setTimeout(() => (copyBtn.textContent = original), 1000);
+	} catch (err) {
+		console.error('Failied to copy CSS:', err);
+	}
+};
+
 const reset = () => {
 	gradientEl.style.removeProperty('background');
 	c1.value = c1.defaultValue;
@@ -45,3 +60,4 @@ btn.addEventListener('click', onRandomClick);
 [c1, c2].forEach((el) => el.addEventListener('input', applyGradient));
 resetBtn.addEventListener('click', reset);
 showInitialCssBackground();
+copyBtn.addEventListener('click', onCopyClick);
